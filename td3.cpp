@@ -107,7 +107,8 @@ bool simulate_projectile(const double magnitude, const double angle,
   return hit_target;
 }
 
-void sort(double *obstacles, const int num_obstacles) {
+void sort(double *obstacles, int num_obstacles) {
+    num_obstacles = int(num_obstacles/3);
     for(int i=0;i<num_obstacles;i++){
         for(int j=i+1;j<num_obstacles;j++){
             if (obstacles[3*i] > obstacles[3*j]){
@@ -123,9 +124,6 @@ void sort(double *obstacles, const int num_obstacles) {
             }
         }
     }
-    for (int i = 0; i < num_obstacles; i++){
-        std::cout << obstacles[i] << std::endl;
-    }
 }
 
 void merge_telemetry(double **telemetries,
@@ -137,14 +135,9 @@ void merge_telemetry(double **telemetries,
   // IMPLEMENT YOUR FUNCTION HERE
     for (int i=0; i<tot_telemetries; i++){
         for (int j=0; j<telemetries_sizes[i]; j++){
-            //std::cout << telemetries[i][j] << std::endl;
             global_telemetry = append_to_array(telemetries[i][j], global_telemetry, global_telemetry_current_size, global_telemetry_max_size);
         }
     }
-    //for (int i = 0; i < global_telemetry_max_size; i++){
-        //std::cout << global_telemetry[i] << std::endl;
-    //}
-    //std::cout << global_telemetry << std::endl;
     sort(global_telemetry, global_telemetry_current_size);
 
 }
